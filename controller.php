@@ -1,5 +1,5 @@
 <?php
-require_once 'controller.lib.php';
+require_once 'lib/controller.lib.php';
 
 if (isset($_REQUEST['upload'])){
     handleUploadRequest();

@@ -1,4 +1,6 @@
 <?php
+require_once 'Media.php';
+
 function handleUploadRequest()
 {
 
@@ -7,8 +9,8 @@ function handleUploadRequest()
     $type = $_FILES['inputFile']['type'];
     $name = $_FILES['inputFile']['name'];
 
-    if (isValidMediaType($type)) {
-        $folder = getMediaFolder($type);
+    if (Media::isValidMediaType($type)) {
+        $folder = Media::getMediaFolder($type);
         $ruta_destino = "$base/$folder/$name";
         move_uploaded_file($ruta_temporal, $ruta_destino);
     }
