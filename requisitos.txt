@@ -1,0 +1,10 @@
+Subir archivos
+No control usuarios
+No usamos BBDD
+Detección de:
+- Imágenes
+- Audio
+- Vídeo
+Un apartado para cada categoría con reproductores incorporados.
+Una carpeta para cada tipo de recurso
+Separar vistas y lógica de programa
