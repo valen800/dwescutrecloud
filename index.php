@@ -1,3 +1,4 @@
+<?php require_once 'lib/Renderer.php' ?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -12,8 +13,13 @@
   <body>
     <div class="container">
         <div class="row">
-            <div class="col-lg-7">
-                <?php require_once 'components/form_upload.php';?>
+            <div class="col-lg-12">
+                <?php require_once 'components/navbar.php';?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <?php echo Renderer::html(isset($_REQUEST['section']));?>
             </div>
         </div>
     </div>
