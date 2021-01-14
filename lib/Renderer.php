@@ -8,19 +8,19 @@ class Renderer
     {
         switch ($seccion) {
             case 'todo':
-                printFullMedia();
+                return self::printFullMedia();
                 break;
             case 'imagenes':
-                printImageMedia();
+                return self::printImageMedia();
                 break;
             case 'audios':
-                printAudioMedia();
+                return self::printAudioMedia();
                 break;
             case 'videos':
-                printVideoMedia();
+                return self::printVideoMedia();
                 break;
             default:
-                printFullMedia();
+                return self::printFullMedia();
                 break;
         }
     }
@@ -43,22 +43,12 @@ class Renderer
     private static function printImageMedia()
     {
 
-        $directorio = App::imageFolder;
+        $directorio = App::$imageFolder;
         $ficheros = array_diff(scandir($directorio), array('..', '.'));
 
-        $resultado = "<ul class=\"list-group\">\n";
-
         foreach ($ficheros as $fichero) {
-            $resultado .= '<li class="list-group-item">';
-            $resultado .= '<a href="ver.php?nombre=' . urlencode($fichero) . '">' . $fichero . '</a> ';
-            if (isAllowed()) {
-                $resultado .= '<a class="btn btn-danger" href="borrar.php?nombre=' . urlencode($fichero) . '">Borrar</a> ';
-                $resultado .= '<a class="btn btn-warning" href="editar.php?nombre=' . urlencode($fichero) . '">Editar</a>';
-            }
-            $resultado .= "</li>\n";
+            $resultado .= '<img src="'.$directorio.'/'.$fichero.'" width="33%" class="img-fluid">';
         }
-
-        $resultado .= "</ul>\n";
 
         return $resultado;
 

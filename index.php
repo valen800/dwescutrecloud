@@ -19,7 +19,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <?php echo Renderer::html(isset($_REQUEST['section']));?>
+                <?php echo Renderer::html(isset($_REQUEST['section'])?$_REQUEST['section']:'todo');?>
             </div>
         </div>
     </div>
