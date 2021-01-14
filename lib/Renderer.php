@@ -27,7 +27,16 @@ class Renderer
 
     private static function printFullMedia()
     {
-        return '';
+
+        $resultado = '<h2>Imágenes</h2>';
+        $resultado .= self::printFolderList(App::$imageFolder);
+        $resultado .= '<h2>Audio</h2>';
+        $resultado .= self::printFolderList(App::$audioFolder);
+        $resultado .= '<h2>Vídeo</h2>';
+        $resultado .= self::printFolderList(App::$videoFolder);
+
+        return $resultado;
+
     }
 
     private static function printAudioMedia()
@@ -47,10 +56,25 @@ class Renderer
         $ficheros = array_diff(scandir($directorio), array('..', '.'));
 
         foreach ($ficheros as $fichero) {
-            $resultado .= '<img src="'.$directorio.'/'.$fichero.'" width="33%" class="img-fluid">';
+            $resultado .= '<img src="' . $directorio . '/' . $fichero . '" width="33%" class="img-fluid">';
         }
 
         return $resultado;
 
+    }
+
+    private static function printFolderList($directorio)
+    {
+        $ficheros = array_diff(scandir($directorio), array('..', '.'));
+
+        $resultado = "<ul class=\"list-group\">\n";
+        foreach ($ficheros as $fichero) {
+            $resultado .= '<li class="list-group-item">';
+            $resultado .= $fichero;
+            $resultado .= "</li>\n";
+        }
+        $resultado .= "</ul>\n";
+
+        return $resultado;
     }
 }
