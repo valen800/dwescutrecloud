@@ -1,6 +1,7 @@
 <?php
 
 require_once 'App.php';
+require_once 'Image.php';
 
 class Renderer
 {
@@ -55,8 +56,11 @@ class Renderer
         $directorio = App::$imageFolder;
         $ficheros = array_diff(scandir($directorio), array('..', '.'));
 
+        $resultado = '';
+
         foreach ($ficheros as $fichero) {
-            $resultado .= '<img src="' . $directorio . '/' . $fichero . '" width="33%" class="img-fluid">';
+            $img = new Image($directorio.'/'.$fichero);
+            $resultado .= $img->getHTML();
         }
 
         return $resultado;
