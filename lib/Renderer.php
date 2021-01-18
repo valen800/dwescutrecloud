@@ -2,6 +2,8 @@
 
 require_once 'App.php';
 require_once 'Image.php';
+require_once 'Video.php';
+require_once 'Audio.php';
 
 class Renderer
 {
@@ -42,12 +44,32 @@ class Renderer
 
     private static function printAudioMedia()
     {
-        return '';
+        $directorio = App::$audioFolder;
+        $ficheros = array_diff(scandir($directorio), array('..', '.'));
+
+        $resultado = '';
+
+        foreach ($ficheros as $fichero) {
+            $video = new Video($directorio.'/'.$fichero);
+            $resultado .= $video->getHTML();
+        }
+
+        return $resultado;
     }
 
     private static function printVideoMedia()
     {
-        return '';
+        $directorio = App::$videoFolder;
+        $ficheros = array_diff(scandir($directorio), array('..', '.'));
+
+        $resultado = '';
+
+        foreach ($ficheros as $fichero) {
+            $video = new Video($directorio.'/'.$fichero);
+            $resultado .= $video->getHTML();
+        }
+
+        return $resultado;
     }
 
     private static function printImageMedia()

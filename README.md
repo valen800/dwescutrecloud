@@ -20,3 +20,21 @@ Separar vistas y lógica de programa
 La aplicación debe funcionar con archivos png, mp3 y mp4.
 
 Cada tipo de archivo debe aparecer en una ventana direrente.
+
+## Segunda iteración
+
+Añadir soporte para formatos jpg, ogg y avi:
+
+- subir
+- visualizar
+
+Marcar correctamente la sección actual.
+
+Diseñar la base de datos necesaria:
+
+- usuarios
+- media
+
+Proteger la web para usuarios autorizados.
+
+
