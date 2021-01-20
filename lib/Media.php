@@ -1,6 +1,21 @@
 <?php
 class Media
 {
+    public static function isValidFile($uploadedFile)
+    {
+        if (self::isValidMediaType($uploadedFile['type'])) {
+            return true;
+        } else {
+            if ($exif_type = exif_imagetype($uploadedFile['tmp_name'])) {
+                if ($exif_type == IMAGETYPE_JPEG) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            }
+        }
+    }
     public static function isValidMediaType($type)
     {
         switch ($type) {
@@ -18,7 +33,7 @@ class Media
         return $resultado;
     }
 
-    public static function getMediaFolder($type)
+    public static function getMediaFolder($type, $file='')
     {
         switch ($type) {
             case 'image/png':
@@ -34,7 +49,14 @@ class Media
                 break;
 
             default:
-                $resultado = 'trash';
+                if ($exif_type = exif_imagetype($file['tmp_name'])) {
+                    if ($exif_type == IMAGETYPE_JPEG) {
+                        $resultado =  'images';
+                    } else {
+                        $resultado = 'trash';
+                    }
+
+                }
                 break;
         }
 
