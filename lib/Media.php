@@ -1,65 +1,51 @@
 <?php
+require_once 'App.php';
+
 class Media
 {
-    public static function isValidFile($uploadedFile)
-    {
-        if (self::isValidMediaType($uploadedFile['type'])) {
-            return true;
-        } else {
-            if ($exif_type = exif_imagetype($uploadedFile['tmp_name'])) {
-                if ($exif_type == IMAGETYPE_JPEG) {
-                    return true;
-                } else {
-                    return false;
-                }
-
-            }
-        }
-    }
     public static function isValidMediaType($type)
     {
-        switch ($type) {
-            case 'image/png':
-            case 'audio/mpeg':
-            case 'video/mp4':
-                $resultado = true;
-                break;
-
-            default:
-                $resultado = false;
-                break;
+        if (in_array($type, App::getAudioTypes()) ||
+            in_array($type, App::getVideoTypes()) ||
+            in_array($type, App::getImageTypes())) {
+            return true;
+        } else {
+            return false;
         }
-
-        return $resultado;
     }
 
-    public static function getMediaFolder($type, $file='')
+    public static function isValidFile($uploadedFile)
     {
-        switch ($type) {
-            case 'image/png':
-                $resultado = 'images';
-                break;
+        if (self::isValidMediaType($uploadedFile['type']) ||
+            self::isValidMediaType(mime_content_type($uploadedFile['tmp_name']))
+           )
+        {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-            case 'video/mp4':
-                $resultado = 'video';
-                break;
+    public static function getMediaFolder($uploadedFile)
+    {
+        if(in_array($uploadedFile['type'], App::getImageTypes()) ||
+           in_array(mime_content_type($uploadedFile['type']), App::getImageTypes())){
 
-            case 'audio/mpeg':
-                $resultado = 'audio';
-                break;
-
-            default:
-                if ($exif_type = exif_imagetype($file['tmp_name'])) {
-                    if ($exif_type == IMAGETYPE_JPEG) {
-                        $resultado =  'images';
-                    } else {
-                        $resultado = 'trash';
-                    }
-
-                }
-                break;
+           return App::$imageFolder;
         }
 
-        return $resultado;
+        if(in_array($uploadedFile['type'], App::getAudioTypes()) ||
+           in_array(mime_content_type($uploadedFile['type']), App::getAudioTypes())){
+
+           return App::$audioFolder;
+        }
+
+        if(in_array($uploadedFile['type'], App::getVideoTypes()) ||
+           in_array(mime_content_type($uploadedFile['type']), App::getVideoTypes())){
+
+           return App::$videoFolder;
+        }
+
+        return 'trash';
     }
 }
