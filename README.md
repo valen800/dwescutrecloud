@@ -37,4 +37,12 @@ Diseñar la base de datos necesaria:
 
 Proteger la web para usuarios autorizados.
 
+## Tercera iteración
+
+Implementar la base de datos.
+
+Implementar la subida de ficheros a la BD.
+
+Crear un par de usuarios y hacer pruebas. Todavía no hemos implementado ni login ni registro. Las pruebas se harán hardcoded.
+
 
