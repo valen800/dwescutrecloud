@@ -1,4 +1,6 @@
-<?php require_once 'lib/Renderer.php' ?>
+<?php require_once 'lib/Renderer.php';
+require_once 'lib/Security.php';
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -14,16 +16,28 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <?php echo Renderer::navbarHtml(isset($_REQUEST['section'])?$_REQUEST['section']:'todo');?>
+                <?php
+if (Security::isAllowed()) {
+    echo Renderer::navbarHtml(isset($_REQUEST['section']) ? $_REQUEST['section'] : 'todo');
+} else {
+    echo Renderer::nologinNavbarHtml();
+}
+?>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <?php echo Renderer::html(isset($_REQUEST['section'])?$_REQUEST['section']:'todo');?>
+                <?php
+if (Security::isAllowed()) {
+    echo Renderer::html(isset($_REQUEST['section']) ? $_REQUEST['section'] : 'todo');
+} else {
+    echo Renderer::nologinHtml();
+}
+?>
             </div>
         </div>
     </div>
-      
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

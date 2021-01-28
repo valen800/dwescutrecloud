@@ -7,7 +7,13 @@ require_once 'Audio.php';
 
 class Renderer
 {
+    public static function nologinNavbarHtml(){
+        return "Mostrar formulario para login";
+    }
 
+    public static function nologinHtml(){
+        return "This is a private cloud";
+    }
     public static function navbarHtml($seccion)
     {
         switch ($seccion) {
