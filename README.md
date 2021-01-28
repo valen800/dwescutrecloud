@@ -41,8 +41,10 @@ Proteger la web para usuarios autorizados.
 
 Implementar la base de datos.
 
-Implementar la subida de ficheros a la BD.
+Formulario de login.
 
 Crear un par de usuarios y hacer pruebas. Todavía no hemos implementado ni login ni registro. Las pruebas se harán hardcoded.
+
+Implementar la subida de ficheros a la BD.
 
 
