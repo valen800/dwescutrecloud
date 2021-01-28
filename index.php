@@ -14,7 +14,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <?php require_once 'components/navbar.php';?>
+                <?php echo Renderer::navbarHtml(isset($_REQUEST['section'])?$_REQUEST['section']:'todo');?>
             </div>
         </div>
         <div class="row">

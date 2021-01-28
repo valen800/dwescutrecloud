@@ -7,6 +7,37 @@ require_once 'Audio.php';
 
 class Renderer
 {
+
+    public static function navbarHtml($seccion)
+    {
+        switch ($seccion) {
+            case 'todo':
+                $todoActive = 'active';
+                break;
+
+            case 'videos':
+                $videoActive = 'active';
+                break;
+            case 'audios':
+                $audioActive = 'active';
+                break;
+            case 'imagenes':
+                $imageActive = 'active';
+                break;
+
+            default:
+                $todoActive = 'active';
+                break;
+        }
+
+        ob_start();
+        require_once 'components/navbar.php';
+        $resultado = ob_get_contents();
+        ob_end_clean();
+
+        return $resultado;
+
+    }
     public static function html($seccion)
     {
         switch ($seccion) {
@@ -50,7 +81,7 @@ class Renderer
         $resultado = '';
 
         foreach ($ficheros as $fichero) {
-            $video = new Video($directorio.'/'.$fichero);
+            $video = new Video($directorio . '/' . $fichero);
             $resultado .= $video->getHTML();
         }
 
@@ -65,7 +96,7 @@ class Renderer
         $resultado = '';
 
         foreach ($ficheros as $fichero) {
-            $video = new Video($directorio.'/'.$fichero);
+            $video = new Video($directorio . '/' . $fichero);
             $resultado .= $video->getHTML();
         }
 
@@ -81,7 +112,7 @@ class Renderer
         $resultado = '';
 
         foreach ($ficheros as $fichero) {
-            $img = new Image($directorio.'/'.$fichero);
+            $img = new Image($directorio . '/' . $fichero);
             $resultado .= $img->getHTML();
         }
 
