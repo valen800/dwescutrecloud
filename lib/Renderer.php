@@ -8,11 +8,16 @@ require_once 'Audio.php';
 class Renderer
 {
     public static function nologinNavbarHtml(){
-        return "Mostrar formulario para login";
+        ob_start();
+        require_once 'components/nologinNavbar.php';
+        $resultado = ob_get_contents();
+        ob_end_clean();
+
+        return $resultado;
     }
 
     public static function nologinHtml(){
-        return "This is a private cloud";
+        return file_get_contents('components/nologinMain.html');
     }
     public static function navbarHtml($seccion)
     {
