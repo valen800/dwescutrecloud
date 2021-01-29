@@ -16,6 +16,11 @@ class Renderer
     }
     public static function navbarHtml($seccion)
     {
+        $todoActive = '';
+        $videoActive = '';
+        $audioActive = '';
+        $imageActive = '';
+
         switch ($seccion) {
             case 'todo':
                 $todoActive = 'active';
