@@ -1,12 +1,19 @@
 <?php
 require_once 'App.php';
 require_once 'Media.php';
+require_once 'Security.php';
 
 class Controller
 {
-    public function handleLoginRequest(){
-        return false;
+    public function handleLoginRequest($user, $pass){
+        if (Security::isValidUser($user, $pass)){
+            Security::setAllowedUser(true);
+        }
+        else{
+            Security::setAllowedUser(false);
+        }
     }
+    
     public function handleUploadRequest()
     {
 

@@ -42,9 +42,9 @@ Proteger la web para usuarios autorizados.
 Implementar la base de datos.
 
 Formulario de login.
+Formulario de logout.
 
 Crear un par de usuarios y hacer pruebas. Todavía no hemos implementado ni login ni registro. Las pruebas se harán hardcoded.
 
 Implementar la subida de ficheros a la BD.
-
 
