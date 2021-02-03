@@ -14,26 +14,34 @@ class Security
         }
     }
 
-    public static function isValidUser($email, $password){
-        if($email == 'xulioxesus@gmail.com' && $password = '123'){
+    public static function isValidUser($email, $password)
+    {
+        if ($email == 'xulioxesus@gmail.com' && $password = '123') {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
-    public static function setAllowedUser($value){
+    public static function setAllowedUser($value,$user,$password)
+    {
 
         if (session_id() == "") {
             session_start();
         }
 
-        if ($value === true){
+        if ($value === true) {
             $_SESSION['autenticado'] = true;
-        }
-        else{
+            $_SESSION['user'] = $user;
+            $_SESSION['password'] = password_hash($password, PASSWORD_DEFAULT);
+        } else {
             $_SESSION['autenticado'] = false;
         }
+    }
+
+    public static function closeSession()
+    {
+        $_SESSION = array();
+        session_destroy();
     }
 }

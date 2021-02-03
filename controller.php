@@ -10,10 +10,21 @@ if (isset($_REQUEST['upload'])) {
         $controller->handleUploadRequest();
         header("Location: index.php");
     }
-} else if (isset($_REQUEST['login'])) {
+}
+else if (isset($_REQUEST['login'])) {
     $controller = new Controller();
     $controller->handleLoginRequest($_REQUEST['usuario'], $_REQUEST['password']);
     header("Location: index.php");
-} else {
+}
+else if (isset($_REQUEST['logout'])) {
+    if (!Security::isAllowed()) {
+        header("Location: index.php");
+    } else {
+        $controller = new Controller();
+        $controller->handleLogoutRequest();
+        header("Location: index.php");
+    }
+}
+else {
     header("Location: index.php");
 }

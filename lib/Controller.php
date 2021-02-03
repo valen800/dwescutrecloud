@@ -5,15 +5,20 @@ require_once 'Security.php';
 
 class Controller
 {
-    public function handleLoginRequest($user, $pass){
-        if (Security::isValidUser($user, $pass)){
-            Security::setAllowedUser(true);
-        }
-        else{
+    public function handleLoginRequest($user, $pass)
+    {
+        if (Security::isValidUser($user, $pass)) {
+            Security::setAllowedUser(true, $user, $pass);
+        } else {
             Security::setAllowedUser(false);
         }
     }
-    
+
+    public function handleLogoutRequest()
+    {
+        Security::closeSession();
+    }
+
     public function handleUploadRequest()
     {
 
@@ -22,9 +27,8 @@ class Controller
         $file = $_FILES['inputFile'];
 
         if (Media::isValidFile($file)) {
-            $folder = Media::getMediaFolder($file);
-            $ruta_destino = "$folder/$name";
-            move_uploaded_file($ruta_temporal, $ruta_destino);
+            $type = Media::getMediaType($file);
+            Media::uploadFile($file,$type);
         }
     }
 }

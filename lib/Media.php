@@ -1,5 +1,6 @@
 <?php
 require_once 'App.php';
+require_once 'Database.php';
 
 class Media
 {
@@ -47,5 +48,32 @@ class Media
         }
 
         return 'trash';
+    }
+
+    public static function getMediaType($uploadedFile)
+    {
+        if(in_array($uploadedFile['type'], App::getImageTypes()) ||
+           in_array(mime_content_type($uploadedFile['type']), App::getImageTypes())){
+
+           return App::$imageType;
+        }
+
+        if(in_array($uploadedFile['type'], App::getAudioTypes()) ||
+           in_array(mime_content_type($uploadedFile['type']), App::getAudioTypes())){
+
+           return App::$audioType;
+        }
+
+        if(in_array($uploadedFile['type'], App::getVideoTypes()) ||
+           in_array(mime_content_type($uploadedFile['type']), App::getVideoTypes())){
+
+           return App::$videoType;
+        }
+
+        return 'unknown';
+    }
+
+    public static function uploadFile($file,$type){
+
     }
 }

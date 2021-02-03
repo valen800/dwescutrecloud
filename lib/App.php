@@ -1,6 +1,10 @@
 <?php
 
 class App{
+    public static $imageType = 'imagen';
+    public static $audioType = 'audio';
+    public static $videoType = 'video';
+    
     public static $mediaFolder = 'media';
     public static $imageFolder = 'media/images';
     public static $audioFolder = 'media/audio';

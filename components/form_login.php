@@ -8,5 +8,4 @@
         <input type="password" class="form-control" name="password" id="password">
     </div>
     <button type="submit" class="btn btn-primary" name="login">Entrar</button>
-    <button type="submit" class="btn btn-danger" name="logout">Salir</button>
 </form>
