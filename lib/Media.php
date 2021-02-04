@@ -74,6 +74,7 @@ class Media
     }
 
     public static function uploadFile($file,$type){
-
+        $database = new Database();
+        $database->uploadFile($file,$type);
     }
 }

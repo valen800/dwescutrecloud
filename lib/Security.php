@@ -44,4 +44,12 @@ class Security
         $_SESSION = array();
         session_destroy();
     }
+
+    public static function getUser(){
+        if (session_id() == "") {
+            session_start();
+        }
+
+        return isset($_SESSION['user'])?$_SESSION['user']:null;
+    }
 }
