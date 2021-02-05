@@ -48,3 +48,9 @@ Crear un par de usuarios y hacer pruebas. Todavía no hemos implementado ni logi
 
 Implementar la subida de ficheros a la BD.
 
+## Cuarta iteración
+
+Modificar las distintas vistas (todo, imágenes, etc.) para que accedan a la base de datos.
+
+Se recomienda comenzar por imágenes.
+
