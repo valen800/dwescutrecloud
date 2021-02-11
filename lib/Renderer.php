@@ -4,6 +4,7 @@ require_once 'App.php';
 require_once 'Image.php';
 require_once 'Video.php';
 require_once 'Audio.php';
+require_once 'Database.php';
 
 class Renderer
 {
@@ -122,13 +123,14 @@ class Renderer
     private static function printImageMedia()
     {
 
-        $directorio = App::$imageFolder;
-        $ficheros = array_diff(scandir($directorio), array('..', '.'));
+        $database = new Database();
+        $imagenes = $database->getImages();
 
         $resultado = '';
 
-        foreach ($ficheros as $fichero) {
-            $img = new Image($directorio . '/' . $fichero);
+        foreach ($imagenes as $imagen) {
+            $src = "data:;base64,{$imagen[1]}";
+            $img = new Image($src);
             $resultado .= $img->getHTML();
         }
 
