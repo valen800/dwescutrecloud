@@ -92,14 +92,15 @@ class Renderer
 
     private static function printAudioMedia()
     {
-        $directorio = App::$audioFolder;
-        $ficheros = array_diff(scandir($directorio), array('..', '.'));
+        $database = new Database();
+        $audios = $database->getAudios();
 
         $resultado = '';
 
-        foreach ($ficheros as $fichero) {
-            $video = new Video($directorio . '/' . $fichero);
-            $resultado .= $video->getHTML();
+        foreach ($audios as $audio) {
+            $src = "data:;base64,{$audio[1]}";
+            $audio = new Audio($src);
+            $resultado .= $audio->getHTML();
         }
 
         return $resultado;
@@ -107,13 +108,14 @@ class Renderer
 
     private static function printVideoMedia()
     {
-        $directorio = App::$videoFolder;
-        $ficheros = array_diff(scandir($directorio), array('..', '.'));
+        $database = new Database();
+        $videos = $database->getVideos();
 
         $resultado = '';
 
-        foreach ($ficheros as $fichero) {
-            $video = new Video($directorio . '/' . $fichero);
+        foreach ($videos as $video) {
+            $src = "data:;base64,{$video[1]}";
+            $video = new Video($src);
             $resultado .= $video->getHTML();
         }
 

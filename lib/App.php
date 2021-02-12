@@ -14,7 +14,7 @@ class App{
 
     private static $audioTypes = array('audio/mpeg', 'audio/ogg');
 
-    private static $videoTypes = array('video/x-msvideo','video/mpeg');
+    private static $videoTypes = array('video/x-msvideo','video/mpeg','video/mp4');
 
     public static function getAudioTypes(){
         return self::$audioTypes;
